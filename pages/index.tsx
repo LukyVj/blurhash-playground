@@ -120,8 +120,8 @@ const Home = () => {
 
             <p>
               I've used this to render some of the BluHash:
-              <a href="https://github.com/zeroxme/react-blurhash">
-                https://github.com/zeroxme/react-blurhash
+              <a href="https://github.com/woltapp/react-blurhash">
+                https://github.com/woltapp/react-blurhash
               </a>
             </p>
           </Section>
