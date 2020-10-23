@@ -112,7 +112,7 @@ const Home = () => {
             {"  "}
             by{"  "}
             <a href="https://twitter.com/lukyvj">@Lukyvj</a> - Hosted on{" "}
-            <a href="https://surge.sh/">https://vercel.sh/</a>
+            <a href="https://vercel.app/">https://vercel.app/</a>
           </footer>
         </div>
       </main>
