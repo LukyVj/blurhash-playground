@@ -379,19 +379,7 @@ body {
 }
 
 section {
-  padding: 1.2em 2em;
-}
-
-@media (min-width: 960px) {
-  section {
-    padding: 1.2em 5em;
-  }
-}
-
-@media (min-width: 1200px) {
-  section {
-    padding: 1.2em 10em;
-  }
+  padding: 1.2em 1.2em;
 }
 
 h2::before {

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { decode } from "blurhash";
 import Unsplash, { toJson } from "unsplash-js";
 import { Blurhash } from "react-blurhash";
+import Section from "../../components/Section";
 
 const unsplash = new Unsplash({
   accessKey: "JCRgQvvMPIFdsi8Z97gvFSPJ-k9POr9-Cv7ln2guzC4",
@@ -94,12 +95,7 @@ const BlurSplash = () => {
   }, [setQuery]);
 
   return (
-    <section>
-      <header>
-        <h2 style={{ textAlign: "left" }}>
-          BlurSplash ( blur_hash from unsplash ){" "}
-        </h2>
-      </header>
+    <Section title="BlurSplash ( blur_hash from unsplash )" fold>
       <div>
         <input
           type="text"
@@ -151,7 +147,7 @@ const BlurSplash = () => {
             })}
         </ul>
       </div>
-    </section>
+    </Section>
   );
 };
 

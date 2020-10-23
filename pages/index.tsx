@@ -6,6 +6,7 @@ import HashToImage from "./experiences/HashToImage";
 import Transformer from "./experiences/Transformer";
 import Animation from "./experiences/Animation";
 import { Blurhash } from "react-blurhash";
+import Section from "../components/Section";
 
 const makeidOne = (length: number) => {
   var result = "";
@@ -87,6 +88,17 @@ const Home = () => {
                 </code>
               </pre>
             </div>
+            <article>
+              <p>
+                Welcome to BlurHash Playground! Here you'll find a collection of
+                small tools and experiment with blurhash!
+              </p>
+              <p>
+                To quickly explain what BlurHash is, it's a blurred image
+                representation, encoded in a string of 36 characters.
+              </p>
+              <p>Now go explore the blurry world of blurhash!</p>
+            </article>
           </header>
           <hr />
           <Animation />
@@ -97,26 +109,22 @@ const Home = () => {
           <hr />
           <BlurSplash />
           <hr />
-          <section>
-            <header>
-              <h2 style={{ textAlign: "left" }}>Credits & MISC:</h2>
+          <Section title="Credits & MISC:" fold>
+            <p className="lh-big">
+              I've built this, not sure anyone would ever use this but myself
+              but here it is:{" "}
+              <a href="https://github.com/LukyVj/cloudinary-blurhash">
+                https://github.com/LukyVj/cloudinary-blurhash
+              </a>
+            </p>
 
-              <p className="lh-big">
-                I've built this, not sure anyone would ever use this but myself
-                but here it is:{" "}
-                <a href="https://github.com/LukyVj/cloudinary-blurhash">
-                  https://github.com/LukyVj/cloudinary-blurhash
-                </a>
-              </p>
-
-              <p>
-                I've used this to render some of the BluHash:
-                <a href="https://github.com/zeroxme/react-blurhash">
-                  https://github.com/zeroxme/react-blurhash
-                </a>
-              </p>
-            </header>
-          </section>
+            <p>
+              I've used this to render some of the BluHash:
+              <a href="https://github.com/zeroxme/react-blurhash">
+                https://github.com/zeroxme/react-blurhash
+              </a>
+            </p>
+          </Section>
           <hr />
 
           <footer style={{ padding: "2em" }}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Blurhash } from "react-blurhash";
 import { isBlurhashValid } from "blurhash";
+import Section from "../../components/Section";
 
 const hashes = [
   "U62rtCRKV.kEj^fRaxM@W8o,o+j^axawj^",
@@ -586,10 +587,7 @@ const Animation = () => {
   }, []);
 
   return (
-    <section>
-      <header>
-        <h2 style={{ textAlign: "left" }}>Random BlurHash Animation</h2>
-      </header>
+    <Section title="Random BlurHash Animation" fold>
       <div className="d-grid g-1 md:g-2">
         <div className=" mih-300">
           <pre
@@ -638,7 +636,7 @@ const Animation = () => {
           )}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

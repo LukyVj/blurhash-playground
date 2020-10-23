@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Blurhash } from "react-blurhash";
 import useSWR from "swr";
+import Section from "../../components/Section";
 
 const Transformer = () => {
   const [hash, setHash] = useState<string | undefined>(undefined);
@@ -41,10 +42,7 @@ const Transformer = () => {
   }
 
   return (
-    <section>
-      <header>
-        <h2 style={{ textAlign: "left" }}>Convert any image to a blur_hash</h2>
-      </header>
+    <Section title="Convert any image url to a BlurHash" fold>
       <div>
         <input
           type="text"
@@ -94,7 +92,7 @@ const Transformer = () => {
           <br />
         </>
       )}
-    </section>
+    </Section>
   );
 };
 

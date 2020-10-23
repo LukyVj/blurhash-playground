@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { isBlurhashValid } from "blurhash";
 import { Blurhash } from "react-blurhash";
+import Section from "../../components/Section";
 
 const HashToImage = () => {
   const blurHashInputRef = useRef<HTMLInputElement>(null);
@@ -14,10 +15,7 @@ const HashToImage = () => {
   };
 
   return (
-    <section>
-      <header>
-        <h2 style={{ textAlign: "left" }}>BlurHash to canvas</h2>
-      </header>
+    <Section title="BlurHash to canvas" fold>
       <div>
         <input
           type="text"
@@ -44,7 +42,7 @@ const HashToImage = () => {
         !isBlurhashValid(hashFromInput).result && (
           <strong style={{ color: "red" }}>Blur hash invalid</strong>
         )}
-    </section>
+    </Section>
   );
 };
 
