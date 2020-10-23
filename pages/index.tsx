@@ -95,7 +95,7 @@ const Home = () => {
               </p>
               <p>
                 To quickly explain what BlurHash is, it's a blurred image
-                representation, encoded in a string of 36 characters.
+                representation, encoded in a string of 30'ish characters.
               </p>
               <p>Now go explore the blurry world of blurhash!</p>
             </article>
