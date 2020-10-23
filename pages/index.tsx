@@ -38,8 +38,18 @@ const Home = () => {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>BlurHash Playground - @LukyVj</title>
+        <link rel="icon" href="/favicon.svg" />
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-5NNPGVRWNF"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag("js", new Date()); gtag("config", "G-5NNPGVRWNF"); `,
+          }}
+        />
       </Head>
 
       <main>
@@ -96,8 +106,8 @@ const Home = () => {
 
               <p>
                 I've used this to render some of the BluHash:
-                <a href="https://github.com/woltapp/react-blurhash">
-                  https://github.com/woltapp/react-blurhash
+                <a href="https://github.com/zeroxme/react-blurhash">
+                  https://github.com/zeroxme/react-blurhash
                 </a>
               </p>
             </header>
