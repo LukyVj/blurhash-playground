@@ -17,7 +17,7 @@ const Animation = () => {
   }, []);
 
   return (
-    <Section title="Random BlurHash Animation" fold>
+    <Section title="Generate Random BlurHash" fold>
       <div className="d-grid g-1 md:g-2">
         <div className=" mih-300">
           <CodeBlock

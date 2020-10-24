@@ -96,7 +96,7 @@ const Home = () => {
           </Section>
           <hr />
 
-          <footer className="ta-center p-32">
+          <footer className="ta-center p-32" style={{ lineHeight: 2 }}>
             Built with TypeScript &{" "}
             <a href="https://github.com/woltapp/blurhash/tree/master/TypeScript">
               BlurHash TypeScript
@@ -104,7 +104,11 @@ const Home = () => {
             {"  "}
             by{"  "}
             <a href="https://twitter.com/lukyvj">@Lukyvj</a> - Hosted on{" "}
-            <a href="https://vercel.app/">▲ https://vercel.app/</a>
+            <a href="https://vercel.app/">▲ https://vercel.app/</a> <br />
+            Share this on{" "}
+            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblurhash-playground.vercel.app&text=Discover+the+weird+and+blurry+world+of+%23blurhash+%F0%9F%9F%A6&via=lukyvj">
+              Twitter 🐦
+            </a>
           </footer>
         </div>
       </main>

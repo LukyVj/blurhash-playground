@@ -376,6 +376,7 @@ html {
 
 body {
   counter-reset: section;
+  background: blue;
 }
 
 section {

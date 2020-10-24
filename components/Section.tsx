@@ -1,5 +1,6 @@
 import { cpuUsage } from "process";
 import { useState } from "react";
+import { slugify } from "../scripts/helpers";
 
 interface SectionProps {
   children: JSX.Element | JSX.Element[];
@@ -13,7 +14,7 @@ const Section = ({ children, fold = false, title }: SectionProps) => {
     setUnfold(!unfold);
   };
   return (
-    <section className="pos-relative">
+    <section className="pos-relative" id={slugify(title)} data-section>
       <header className="d-flex ai-start jc-start">
         <h2 className="ta-left fxg-0">{title}</h2>
 
