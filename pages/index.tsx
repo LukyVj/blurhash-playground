@@ -12,6 +12,7 @@ import Hero from "../components/Hero";
 import BlurhashCanvas from "../components/BlurhashCanvas";
 
 import { hashToCss } from "../scripts/helpers";
+import ImageToBlurhash from "./experiences/ImageToBlurhash";
 
 const makeidOne = (length: number) => {
   var result = "";
@@ -74,6 +75,8 @@ const Home = () => {
         )}
         <div className="page-content">
           <Hero hash={hash} setReload={setReload} reload={reload} />
+          {/* <hr />
+          <ImageToBlurhash /> */}
           <hr />
           <BlurhashToCss hash={hash && hash} />
           <hr />

@@ -482,8 +482,13 @@ pre {
   left: 0;
 }
 /** Let's get foufou */
+@media (min-wdith: 960px) {
+  #__next > .container {
+    padding: 3em;
+  }
+}
 #__next > .container {
-  padding: 3em;
+  padding: 1em;
 }
 .page-background {
   position: fixed;
