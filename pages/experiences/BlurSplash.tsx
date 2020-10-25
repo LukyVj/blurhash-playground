@@ -3,11 +3,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { decode } from "blurhash";
 import Unsplash, { toJson } from "unsplash-js";
-import { Blurhash } from "react-blurhash";
+import BlurhashCanvas from "../../components/BlurhashCanvas";
 import Section from "../../components/Section";
 
 const unsplash = new Unsplash({
-  accessKey: "JCRgQvvMPIFdsi8Z97gvFSPJ-k9POr9-Cv7ln2guzC4",
+  accessKey: process.env.UNSPLASH_KEY,
   timeout: 500, // values set in ms
 });
 
@@ -36,22 +36,16 @@ const CanvasComp = ({ item, size }: any) => {
   return (
     <div
       style={{
-        width: size,
-        height: size,
+        minWidth: size,
+        minHeight: size,
         position: "relative",
         marginBottom: 8,
       }}
       onMouseOver={() => setReveal(true)}
       onMouseLeave={() => setReveal(false)}
+      className="w-100p h-100p"
     >
-      <Blurhash
-        hash={item.blur_hash}
-        width={size}
-        height={size}
-        resolutionX={32}
-        resolutionY={32}
-        punch={1}
-      />
+      <BlurhashCanvas hash={item.blur_hash} width={size} height={size} />
       <img
         src={item.urls.small}
         alt={item.description}
@@ -59,8 +53,10 @@ const CanvasComp = ({ item, size }: any) => {
           position: "absolute",
           top: 0,
           left: 0,
-          width: size,
-          height: size,
+          minWidth: size,
+          minHeight: size,
+          width: "100%",
+          height: "100%",
           objectFit: "cover",
           opacity: reveal ? 1 : 0,
         }}
@@ -136,11 +132,11 @@ const BlurSplash = () => {
         >
           GO!
         </button>
-        <ul className="d-grid g-2 md:g-4 p-0 m-0 ggap-8">
+        <ul className="lis-none d-grid g-2 md:g-4 p-0 m-0 ggap-8">
           {data &&
             data.map((item: any) => {
               return (
-                <li key={item.id}>
+                <li key={item.id} className="mih-200">
                   <CanvasComp item={item} size={query.s} />
                 </li>
               );

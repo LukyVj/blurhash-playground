@@ -88,14 +88,20 @@ const Home = () => {
           <hr />
           <BlurSplash />
           <hr />
-          <Section title="Credits & MISC:" fold>
-            <p className="lh-big">
-              I've built this, not sure anyone would ever use this but myself
-              but here it is:{" "}
-              <a href="https://github.com/LukyVj/cloudinary-blurhash">
-                https://github.com/LukyVj/cloudinary-blurhash
-              </a>
-            </p>
+          <Section title="Resources:" fold>
+            <ul className="w-100%">
+              <li>
+                Learn more about <a href="https://blurha.sh">BlurHash</a>
+              </li>
+              <li>
+                {" "}
+                I've built this, not sure anyone would ever use this but myself
+                but here it is:{" "}
+                <a href="https://github.com/LukyVj/cloudinary-blurhash">
+                  LukyVj/cloudinary-blurhash
+                </a>
+              </li>
+            </ul>
           </Section>
           <hr />
 

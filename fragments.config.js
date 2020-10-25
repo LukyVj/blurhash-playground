@@ -446,6 +446,7 @@ module.exports = {
         responsive: true,
         classes: {
           0: 0,
+          200: "200px",
           "100p": "100%",
           "100vh": "100vh",
         },

@@ -379,10 +379,6 @@ body {
   background: blue;
 }
 
-section {
-  padding: 1.2em 1.2em;
-}
-
 h2::before {
   counter-increment: section; /* On incrémente le compteur section */
   content: "" counter(section) " - "; /* On affiche le compteur */
@@ -392,13 +388,6 @@ h1,
 h2,
 h3 {
   text-transform: uppercase;
-}
-
-ul {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(5, 20%);
-  text-align: center;
 }
 
 p {
@@ -488,13 +477,14 @@ pre {
   left: 0;
 }
 /** Let's get foufou */
-@media (min-wdith: 960px) {
+
+#__next > .container {
+  padding: 1em;
+}
+@media (min-width: 960px) {
   #__next > .container {
     padding: 3em;
   }
-}
-#__next > .container {
-  padding: 1em;
 }
 .page-background {
   position: fixed;
@@ -512,10 +502,10 @@ pre {
   border: 8px solid blue;
 }
 
-.d-grid  {
+.d-grid:not(.md:g-4)  {
   outline: 4px dashed blue;
 }
 
-.d-grid > *:not(:last-child) {
+.d-grid:not(.md:g-4) > *:not(:last-child) {
   border-right: 4px dashed blue;
 }
