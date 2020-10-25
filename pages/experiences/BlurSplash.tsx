@@ -2,36 +2,22 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { decode } from "blurhash";
-import Unsplash, { toJson } from "unsplash-js";
+import useSWR from "swr";
 import BlurhashCanvas from "../../components/BlurhashCanvas";
 import Section from "../../components/Section";
+import { getLocalWithExpiry, setLocalWithExpiry } from "../../scripts/helpers";
 
-const unsplash = new Unsplash({
-  accessKey: process.env.UNSPLASH_KEY,
-  timeout: 500, // values set in ms
-});
+const dateInPast = function (firstDate, secondDate) {
+  if (firstDate.setHours(0, 0, 0, 0) <= secondDate.setHours(0, 0, 0, 0)) {
+    return true;
+  }
+
+  return false;
+};
 
 const CanvasComp = ({ item, size }: any) => {
   // const canvasContainerRef = useRef<HTMLDivElement>(null);
   const [reveal, setReveal] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   const pixels = decode(item.blur_hash, size, size);
-
-  //   const canvas = document.createElement("canvas");
-  //   const ctx = canvas.getContext("2d");
-  //   const imageData = ctx?.createImageData(size, size);
-  //   canvas.style.width=size;
-  //   canvas.style.height=size;
-
-  //   imageData && imageData.data.set(pixels);
-
-  //   imageData && ctx?.putImageData(imageData, 0, 0);
-
-  //   canvasContainerRef &&
-  //     canvasContainerRef.current &&
-  //     canvasContainerRef.current.appendChild(canvas);
-  // }, []);
 
   return (
     <div
@@ -66,78 +52,43 @@ const CanvasComp = ({ item, size }: any) => {
 };
 
 const BlurSplash = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [query, setQuery] = useState<{ q: string; n: number; s: number }>({
-    q: "dogs",
-    n: 10,
-    s: 100,
-  });
+  const [images, setImages] = useState<object[]>();
 
-  const inputQueryRef = useRef<HTMLInputElement>(null);
-  const inputNumberRef = useRef<HTMLInputElement>(null);
-  const inputSizeRef = useRef<HTMLInputElement>(null);
+  const TTL = 2 * 60 * 1000;
+  const localDataName = "UnsplashImages";
 
+  const { data, error } = useSWR(
+    `https://api.unsplash.com/photos/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_KEY}`,
+    null
+  );
   useEffect(() => {
-    const dataFetch = async () => {
-      unsplash.search
-        .photos(query.q, 1, query.n - 1 || 10)
-        .then(toJson)
-        .then((json) => {
-          setData(json.results);
-        });
-    };
+    if (error) {
+      console.log(error);
+    }
+    if (!data) {
+      console.log("loading images");
+    }
 
-    dataFetch();
-  }, [setQuery]);
+    if (getLocalWithExpiry(localDataName)) {
+      console.log("Loaded from localStorage");
+      getLocalWithExpiry(localDataName) &&
+        setImages(getLocalWithExpiry(localDataName));
+    } else {
+      console.log(`Load localStorage with new data and ${TTL} seconds of TTL`);
+      setLocalWithExpiry(localDataName, data, TTL);
+      setImages(getLocalWithExpiry(localDataName));
+    }
+  }, [data]);
 
   return (
     <Section title="BlurSplash ( blur_hash from unsplash )" fold>
       <div>
-        <input
-          type="text"
-          ref={inputQueryRef}
-          placeholder="Query"
-          style={{ width: "25%" }}
-        />
-        <input
-          type="number"
-          ref={inputNumberRef}
-          placeholder="Number of result"
-          style={{ width: "25%" }}
-        />
-        <input
-          type="number"
-          ref={inputSizeRef}
-          placeholder="Size images"
-          style={{ width: "25%" }}
-        />
-        <button
-          onClick={() => {
-            if (
-              inputQueryRef &&
-              inputQueryRef.current &&
-              inputNumberRef &&
-              inputNumberRef.current &&
-              inputSizeRef &&
-              inputSizeRef.current
-            ) {
-              setQuery({
-                q: inputQueryRef.current.value,
-                n: parseInt(inputNumberRef.current.value),
-                s: parseInt(inputSizeRef.current.value),
-              });
-            }
-          }}
-          style={{ width: "25%" }}
-        >
-          GO!
-        </button>
         <ul className="lis-none d-grid g-2 md:g-4 p-0 m-0 ggap-8">
-          {data &&
-            data.map((item: any) => {
+          {images &&
+            images.map((item: any) => {
               return (
                 <li key={item.id} className="mih-200">
-                  <CanvasComp item={item} size={query.s} />
+                  <CanvasComp item={item} />
                 </li>
               );
             })}

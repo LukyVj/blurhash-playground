@@ -3,8 +3,8 @@ import { decode } from "blurhash";
 export const hashToCss = (hash: string) => {
   const cv = document.createElement("canvas") as HTMLCanvasElement;
   const ctx = cv.getContext("2d");
-  const pixels = decode(hash, 100, 100, 1);
-  const imgData = ctx.createImageData(100, 100);
+  const pixels = decode(hash, 300, 300, 1);
+  const imgData = ctx.createImageData(300, 300);
   imgData.data.set(pixels);
   ctx.putImageData(imgData, 0, 0);
   if (cv.toDataURL()) {
@@ -48,4 +48,37 @@ export const slugify = (str): string => {
     .replace(/-+/g, "-"); // collapse dashes
 
   return str;
+};
+
+export const setLocalWithExpiry = (key, value, ttl) => {
+  const now = new Date();
+
+  // `item` is an object which contains the original value
+  // as well as the time when it's supposed to expire
+  const item = {
+    value: value,
+    expiry: now.getTime() + ttl,
+  };
+  localStorage.setItem(key, JSON.stringify(item));
+};
+
+export const getLocalWithExpiry = (key) => {
+  const itemStr = localStorage.getItem(key);
+
+  // if the item doesn't exist, return null
+  if (!itemStr) {
+    return false;
+  }
+
+  const item = JSON.parse(itemStr);
+  const now = new Date();
+
+  // compare the expiry time of the item with the current time
+  if (now.getTime() > item.expiry) {
+    // If the item is expired, delete the item from storage
+    // and return null
+    localStorage.removeItem(key);
+    return false;
+  }
+  return item.value;
 };

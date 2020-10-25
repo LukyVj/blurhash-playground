@@ -27,6 +27,7 @@ const ImageToBlurhash = () => {
           const ctx = cv.getContext("2d");
 
           image.onload = function () {
+            ctx.clearRect(0, 0, 200, 200);
             ctx.drawImage(image, 0, 0, 200, 200);
             setReady(true);
           };
@@ -35,10 +36,8 @@ const ImageToBlurhash = () => {
           image.style.height = "auto";
 
           setTimeout(() => {
-            var imageData = ctx.getImageData(0, 0, 100, 100);
-
-            console.log(imageData.data);
-            var buffer = encode(imageData.data, 100, 100, 5, 5);
+            var imageData = ctx.getImageData(0, 0, 150, 150);
+            var buffer = encode(imageData.data, 150, 150, 5, 5);
             setHash(buffer);
           }, 500);
         };
