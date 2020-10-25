@@ -37,7 +37,7 @@ const makeid = (length: number) => {
 const Home = () => {
   const [hash, setHash] = useState<string | null>(null);
   let [reload, setReload] = useState<boolean>(false);
-  let [render, setRender] = useState<string>("css");
+
   const pageRef = useRef<HTMLDivElement>();
   const [randomColor, setRandomColor] = useState<string>();
 
@@ -45,12 +45,6 @@ const Home = () => {
     setHash(`${makeidOne(1)}${makeid(35)}`);
     setRandomColor(Math.floor(Math.random() * 16777215).toString(16));
   }, [reload]);
-
-  useEffect(() => {
-    if (typeof render !== undefined) {
-      console.log(render);
-    }
-  }, [render]);
 
   return (
     <div className="container" ref={pageRef}>
@@ -80,13 +74,7 @@ const Home = () => {
           </div>
         )}
         <div className="page-content">
-          <Hero
-            hash={hash}
-            setReload={setReload}
-            reload={reload}
-            render={render}
-            setRender={setRender}
-          />
+          <Hero hash={hash} setReload={setReload} reload={reload} />
           <hr />
           <ImageToBlurhash />
           <hr />
@@ -101,7 +89,7 @@ const Home = () => {
           <BlurSplash />
           <hr />
           <Section title="Resources:" fold>
-            <ul className="w-100%">
+            <ul className="w-100p lh-big fw-bold">
               <li>
                 Learn more about <a href="https://blurha.sh">BlurHash</a>
               </li>
@@ -125,7 +113,8 @@ const Home = () => {
             {"  "}
             by{"  "}
             <a href="https://twitter.com/lukyvj">@Lukyvj</a> - Hosted on{" "}
-            <a href="https://vercel.app/">▲ https://vercel.app/</a> <br />
+            <a href="https://vercel.app/">▲ https://vercel.app/</a> | Images
+            from <a href="https://unsplash.com/">Unsplash</a> <br />
             Share this on{" "}
             <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fblurhash-playground.vercel.app&text=Discover+the+weird+and+blurry+world+of+%23blurhash+%F0%9F%9F%A6&via=lukyvj">
               Twitter 🐦

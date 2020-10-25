@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 import React, { useEffect, useRef, useState } from "react";
-import { decode } from "blurhash";
 import useSWR from "swr";
 import BlurhashCanvas from "../../components/BlurhashCanvas";
 import Section from "../../components/Section";
@@ -22,16 +21,15 @@ const CanvasComp = ({ item, size }: any) => {
   return (
     <div
       style={{
-        minWidth: size,
-        minHeight: size,
+        width: "100%",
+        height: "100%",
         position: "relative",
-        marginBottom: 8,
       }}
       onMouseOver={() => setReveal(true)}
       onMouseLeave={() => setReveal(false)}
-      className="w-100p h-100p"
+      className="w-100p h-100p pos-relative ov-hidden"
     >
-      <BlurhashCanvas hash={item.blur_hash} width={size} height={size} />
+      <BlurhashCanvas hash={item.blur_hash} />
       <img
         src={item.urls.small}
         alt={item.description}
@@ -39,14 +37,28 @@ const CanvasComp = ({ item, size }: any) => {
           position: "absolute",
           top: 0,
           left: 0,
-          minWidth: size,
-          minHeight: size,
+          right: 0,
+          bottom: 0,
           width: "100%",
           height: "100%",
           objectFit: "cover",
           opacity: reveal ? 1 : 0,
+          transition: "opacity .2s ease",
         }}
       />
+      {reveal && (
+        <div
+          className="pos-absolute bot-0 left-0 p-16 color-white fsz-14 w-100p"
+          style={{ background: "rgba(0, 0, 0, 0.9)" }}
+        >
+          <small>
+            By{" "}
+            <a href={item.user.links.self} className="p-0 pv-0">
+              {item.user.name}
+            </a>{" "}
+          </small>
+        </div>
+      )}
     </div>
   );
 };
@@ -82,6 +94,10 @@ const BlurSplash = () => {
 
   return (
     <Section title="BlurSplash ( blur_hash from unsplash )" fold>
+      <p>
+        If you don't see any images, it means the app got rate limited. It gets
+        reset every hour.
+      </p>
       <div>
         <ul className="lis-none d-grid g-2 md:g-4 p-0 m-0 ggap-8">
           {images &&

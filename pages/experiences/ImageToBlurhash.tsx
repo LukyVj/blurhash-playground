@@ -4,10 +4,6 @@ import BlurhashCanvas from "../../components/BlurhashCanvas";
 
 import Section from "../../components/Section";
 
-interface HTMLInputEvent extends Event {
-  currenTarget: HTMLInputElement & EventTarget;
-}
-
 const ImageToBlurhash = () => {
   const blurHashInputRef = useRef<HTMLInputElement>(null);
   const previewRef = useRef<HTMLCanvasElement>(null);
@@ -48,26 +44,40 @@ const ImageToBlurhash = () => {
 
   return (
     <Section title="Image to blurhash" fold>
+      <style jsx>
+        {`
+          .d-grid {
+            outline: 4px dashed blue;
+          }
+
+          .d-grid > *:not(:last-child) {
+            border-right: 4px dashed blue;
+          }
+        `}
+      </style>
       <div>
         <input
           type="file"
           ref={blurHashInputRef}
           placeholder="Open file"
           id="upload"
-          multiple
           name="file"
+          className="w-100p"
         />
         <div className="d-grid g-2">
           <div style={{ width: "100%", height: "100%", maxHeight: 400 }}>
-            <canvas ref={previewRef} className="w-100p" />
+            <canvas
+              ref={previewRef}
+              className="w-100p h-100p obf-cover obp-center"
+            />
           </div>
           <div style={{ width: "100%", height: "100%", maxHeight: 400 }}>
             {hash && <BlurhashCanvas hash={hash} />}
           </div>
         </div>
-        <div className="mt-32">
+        <div className="mt-32 w-100p">
           <label htmlFor="resHash">Result blurhash</label>
-          <input type="text" id="resHash" value={hash} />
+          <input type="text" id="resHash" value={hash} className="w-100p" />
         </div>
       </div>
     </Section>
