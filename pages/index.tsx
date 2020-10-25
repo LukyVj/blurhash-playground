@@ -75,8 +75,8 @@ const Home = () => {
         )}
         <div className="page-content">
           <Hero hash={hash} setReload={setReload} reload={reload} />
-          {/* <hr />
-          <ImageToBlurhash /> */}
+          <hr />
+          <ImageToBlurhash />
           <hr />
           <BlurhashToCss hash={hash && hash} />
           <hr />

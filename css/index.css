@@ -472,6 +472,12 @@ input + input + input {
   width: 20%;
 }
 
+label {
+  display: inline-block;
+  clear: both;
+  width: 100%;
+}
+
 pre {
   font-size: 0.8em;
 }
@@ -504,4 +510,12 @@ pre {
   background: white;
   z-index: 1;
   border: 8px solid blue;
+}
+
+.d-grid  {
+  outline: 4px dashed blue;
+}
+
+.d-grid > *:not(:last-child) {
+  border-right: 4px dashed blue;
 }
