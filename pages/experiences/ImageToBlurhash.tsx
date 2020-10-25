@@ -5,7 +5,7 @@ import BlurhashCanvas from "../../components/BlurhashCanvas";
 import Section from "../../components/Section";
 
 interface HTMLInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
+  currenTarget: HTMLInputElement & EventTarget;
 }
 
 const ImageToBlurhash = () => {
@@ -15,7 +15,7 @@ const ImageToBlurhash = () => {
   const [ready, setReady] = useState<boolean>(false);
 
   useEffect(() => {
-    blurHashInputRef.current.addEventListener("change", (e: HTMLInputEvent) => {
+    blurHashInputRef.current.addEventListener("change", (e: any) => {
       const that = e.currentTarget;
       if (that.files && that.files[0]) {
         let reader = new FileReader();
