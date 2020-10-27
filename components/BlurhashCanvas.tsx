@@ -19,7 +19,7 @@ const BlurhashCanvas = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const draw = () => {
-    if (canvasRef) {
+    if (canvasRef && hash) {
       const pixels = decode(hash, width, height, punch);
 
       const ctx = canvasRef.current.getContext("2d");

@@ -54,7 +54,7 @@ const Transformer = () => {
           onClick={() => {
             if (imageInputRef && imageInputRef.current) {
               setUrl(
-                `https://image-to-blurhash.herokuapp.com/transform?q=${imageInputRef?.current.value}`
+                `https://image-to-blurhash.herokuapp.com/transform/?q=${imageInputRef?.current.value}`
               );
               setImgUrl(imageInputRef?.current.value);
               setLoader(true);
